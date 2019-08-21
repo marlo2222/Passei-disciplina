@@ -29,3 +29,4 @@ build/
 
 ### VS Code ###
 .vscode/
+classes/production/diciplina/META-INF/diciplina.kotlin_module
