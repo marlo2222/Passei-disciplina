@@ -8,4 +8,7 @@ import com.trabalho.diciplina.models.Curso;
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Long> {
 
+    Curso findById(long id);
+
+    Curso findByNome(String nome);
 }

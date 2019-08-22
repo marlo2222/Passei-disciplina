@@ -20,13 +20,13 @@ public class Disciplina{
     @Column(name = "id")
     private long id;
 
-    @Column(name = "nome", nullable = false, unique = true, length = 50)
+    @Column(name = "nome", unique = true, length = 50)
     private String nome;
 
-    @Column(name = "professorAtual", nullable = false, length = 50)
+    @Column(name = "professorAtual",length = 50)
     private String professorAtual;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    /*@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "semestre")
-    private Semestre semestre;
+    private Semestre semestre;*/
 }

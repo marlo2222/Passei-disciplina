@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SemestreRepository extends JpaRepository<Semestre, Long> {
+
+    /*Semestre findById(long id);
+
+    Semestre deleteBySemestre(Semestre semestre);*/
 }
