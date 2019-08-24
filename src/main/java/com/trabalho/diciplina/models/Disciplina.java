@@ -1,11 +1,13 @@
 package com.trabalho.diciplina.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "disciplina")
@@ -13,7 +15,9 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Disciplina{
+public class Disciplina implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +30,8 @@ public class Disciplina{
     @Column(name = "professorAtual",length = 50)
     private String professorAtual;
 
-    /*@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "semestre")
-    private Semestre semestre;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_curso")
+    @JsonIgnore
+    private Curso curso;
 }

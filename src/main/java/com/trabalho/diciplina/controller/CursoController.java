@@ -32,11 +32,11 @@ public class CursoController {
         return cursoRepository.findById(id);
     }
 
-    @RequestMapping(value = "/curso/{nome}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/curso/{nome}", method = RequestMethod.GET)
     @ApiOperation(value = "Retorna um curso pelo nome")
-    public Curso listarCursoNome(@PathVariable("nome") String nome){
+    public Curso CursorNome(@PathVariable("nome") String nome){
         return cursoRepository.findByNome(nome);
-    }
+    }*/
 
     @RequestMapping(value = "/curso", method = RequestMethod.POST)
     @ApiOperation(value = "Salva um Curso")
