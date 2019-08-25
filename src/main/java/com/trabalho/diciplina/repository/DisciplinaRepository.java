@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 
     Disciplina findByNome(String nome);
+
+    Disciplina findById(long id);
 }

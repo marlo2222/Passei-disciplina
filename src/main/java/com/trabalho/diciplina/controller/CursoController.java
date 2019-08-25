@@ -5,8 +5,6 @@ import com.trabalho.diciplina.repository.CursoRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,45 +18,37 @@ public class CursoController {
     @Autowired
     CursoRepository cursoRepository;
 
-    @RequestMapping(value = "/cursos", method = RequestMethod.GET)
+    @RequestMapping(value = "/curso/listar", method = RequestMethod.GET)
     @ApiOperation(value = "Retorna uma lista de cursos")
     public List<Curso> listarCursos(){
         return cursoRepository.findAll();
     }
 
-    @RequestMapping(value = "/curso/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/curso/listar/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "Retorna uma curso pelo id")
     public Curso listarCursoId(@PathVariable("id") long id){
         return cursoRepository.findById(id);
     }
 
-    /*@RequestMapping(value = "/curso/{nome}", method = RequestMethod.GET)
-    @ApiOperation(value = "Retorna um curso pelo nome")
-    public Curso CursorNome(@PathVariable("nome") String nome){
-        return cursoRepository.findByNome(nome);
-    }*/
-
-    @RequestMapping(value = "/curso", method = RequestMethod.POST)
+    @RequestMapping(value = "/curso/salvar", method = RequestMethod.POST)
     @ApiOperation(value = "Salva um Curso")
     public Curso salvarCurso(@RequestBody Curso curso){
         return cursoRepository.save(curso);
     }
 
-    @RequestMapping(value = "/curso/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/curso/deletar/{id}", method = RequestMethod.DELETE)
     @ApiOperation(value = "Deleta um curso pelo id")
-    public ResponseEntity.BodyBuilder deletarCurso(@PathVariable("id") long id){
+    public void deletarCurso(@PathVariable("id") long id){
         cursoRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/curso", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/curso/deletar", method = RequestMethod.DELETE)
     @ApiOperation(value = "Deleta um vurso")
-    public ResponseEntity.BodyBuilder deletarCurso(@RequestBody Curso curso){
+    public void deletarCurso(@RequestBody Curso curso){
         cursoRepository.delete(curso);
-        return ResponseEntity.status(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/curso", method = RequestMethod.PUT)
+    @RequestMapping(value = "/curso/atualizar", method = RequestMethod.PUT)
     public Curso atualizarCurso(@RequestBody Curso curso){
         return cursoRepository.save(curso);
     }

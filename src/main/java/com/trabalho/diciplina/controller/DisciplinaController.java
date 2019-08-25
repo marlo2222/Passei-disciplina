@@ -10,9 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,26 +29,19 @@ public class DisciplinaController {
     public String home() {
     	return "Pagina Inicial";
     }
-    @RequestMapping(value = "/disciplinas", method = RequestMethod.GET)
+    @RequestMapping(value = "/disciplina/listar", method = RequestMethod.GET)
     @ApiOperation(value = "Retorna uma lista de usuarios")
     public List<Disciplina> listarDisciplinas(){
     	return diciplinaRepository.findAll();
     }
 
-    @RequestMapping(value = "/disciplina/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/disciplina/listar/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "Retorna uma diciplina pelo ID")
     public Disciplina listaDisciplinaId(@PathVariable("id") long id){
-
-		return diciplinaRepository.getOne(id);
+		return diciplinaRepository.findById(id);
     }
 
-    @RequestMapping(value = "/disciplina/{nome}", method = RequestMethod.GET)
-    @ApiOperation(value = "Retorna uma diciplina pelo NOME")
-    public Disciplina listerDisciplineNome(@PathVariable("nome") String nome){
-    	return diciplinaRepository.findByNome(nome);
-    }
-
-    @RequestMapping(value = "/disciplina", method = RequestMethod.POST)
+    @RequestMapping(value = "/disciplina/salvar", method = RequestMethod.POST)
     @ApiOperation(value = "Salva uma disciplina")
     public Disciplina salvarDisciplina(@RequestBody Disciplina disciplina){
         Curso curso = cursoRepository.findById(disciplina.getCurso().getId());
@@ -59,17 +49,15 @@ public class DisciplinaController {
         return diciplinaRepository.save(disciplina);
     }
 
-    @RequestMapping(value = "/disciplina/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/disciplina/deletar/{id}", method = RequestMethod.DELETE)
     @ApiOperation(value = "Deleta uma disciplina")
-    public ResponseEntity.BodyBuilder apagarDisciplina(@PathVariable("id") long id){
+    public void apagarDisciplina(@PathVariable("id") long id){
         diciplinaRepository.deleteById(id);
-    	return ResponseEntity.status(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/disciplina", method = RequestMethod.PUT)
+    @RequestMapping(value = "/disciplina/atualizar", method = RequestMethod.PUT)
     @ApiOperation(value = "Atualiza uma disciplina")
     public Disciplina atualizarDisciplina(@RequestBody Disciplina disciplina){
     	return diciplinaRepository.save(disciplina);
     }
-
 }
