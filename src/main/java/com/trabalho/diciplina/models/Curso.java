@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,10 +27,11 @@ public class Curso implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
+    @NotEmpty
     private String nome;
 
-    @Column(name = "qtd_semestres")
+    @Column(name = "qtd_semestres", nullable = false)
     private int qtdSesmestres;
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

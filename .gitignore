@@ -31,3 +31,4 @@ build/
 .vscode/
 classes/production/diciplina/META-INF/diciplina.kotlin_module
 /bin/
+src/main/resources/application-dev.properties

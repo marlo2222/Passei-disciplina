@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -25,10 +26,11 @@ public class Disciplina implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "nome", unique = true, length = 50)
+    @Column(name = "nome", unique = true, length = 50, nullable = false)
+    @NotEmpty
     private String nome;
 
-    @Column(name = "professorAtual",length = 50)
+    @Column(name = "professorAtual",length = 50, nullable = false)
     private String professorAtual;
 
     @ManyToOne(fetch = FetchType.LAZY)
