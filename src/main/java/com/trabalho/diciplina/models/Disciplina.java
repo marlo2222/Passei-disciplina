@@ -30,9 +30,6 @@ public class Disciplina implements Serializable {
     @NotEmpty
     private String nome;
 
-    @Column(name = "professorAtual",length = 50, nullable = false)
-    private String professorAtual;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_curso")
     @JsonBackReference
