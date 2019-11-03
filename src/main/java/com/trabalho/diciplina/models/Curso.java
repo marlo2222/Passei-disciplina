@@ -34,7 +34,7 @@ public class Curso implements Serializable {
     @Column(name = "qtd_semestres", nullable = false)
     private int qtdSesmestres;
 
-    @Column(name = "descricao", nullable = false, length = 200)
+    @Column(name = "descricao", nullable = false, length = 120)
     private String descricao;
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
